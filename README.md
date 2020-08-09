@@ -1,6 +1,6 @@
 ## IFSP_BRA_DWEI5
 
-Aulas da Disciplina Desenvolvimento Web I do Curso Análise e Desenvolvimento de Sistemas.
+Aulas da Disciplina Desenvolvimento Web do Curso Análise e Desenvolvimento de Sistemas.
 
 Para ler os conteúdos publicados, faça o download e abra em qualquer navegador.
 
