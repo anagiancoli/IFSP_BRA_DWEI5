@@ -13163,16 +13163,16 @@ div#notebook {
 <span class="nx">correr</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Correndo...'</span><span class="p">)</span> <span class="p">});</span>
 
 <span class="c1">// Uma função pode retornar/conter uma função </span>
-<span class="nx">funtcion</span> <span class="nx">soma</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">function</span> <span class="nx">soma</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="kd">function</span><span class="p">(</span><span class="nx">c</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span> <span class="o">+</span> <span class="nx">c</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
 <span class="nx">soma</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)(</span><span class="mi">4</span><span class="p">)</span>  
 
-<span class="c1">// Parâmetros e retornos são opcionais  </span>
+<span class="c1">// Parâmetros e retornos são opcionais - Usando template string ${ } </span>
 <span class="kd">function</span> <span class="nx">area</span><span class="p">(</span><span class="nx">larg</span><span class="p">,</span> <span class="nx">alt</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kr">const</span> <span class="nx">area</span> <span class="o">=</span> <span class="nx">larg</span> <span class="o">*</span> <span class="nx">at</span><span class="p">;</span>
+    <span class="kr">const</span> <span class="nx">area</span> <span class="o">=</span> <span class="nx">larg</span> <span class="o">*</span> <span class="nx">alt</span><span class="p">;</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">area</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Valor </span><span class="si">${</span><span class="nx">area</span><span class="si">}</span><span class="sb">m2 acima do permitido!`</span><span class="p">);</span>
     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
@@ -13287,24 +13287,12 @@ div#notebook {
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="2.4.-Carregamento-do-DOM-e-recursos">2.4. Carregamento do DOM e recursos<a class="anchor-link" href="#2.4.-Carregamento-do-DOM-e-recursos">¶</a></h3><h3 id="2.4.1.-Ciclo-de-vida">2.4.1. Ciclo de vida<a class="anchor-link" href="#2.4.1.-Ciclo-de-vida">¶</a></h3><ul>
-<li><p>O ciclo de vida do carregamento de uma página, consiste em 3 eventos importantes:</p>
-<ul>
+<li>O ciclo de vida do carregamento de uma página, consiste em 3 eventos importantes:  <ul>
 <li><strong>DOMContentLoaded</strong>: onde o navegador carrega totalmente o HTML, e a árvore DOM é constituída, porém recursos externos como imagens, estilos ainda não podem ser carregados.  </li>
 <li><strong>load</strong>: além do carregamento do HTML, os recursos externos são carregados: imagens, estilos etc.   </li>
 <li><strong>beforeunload/unload</strong>: o usuário está saindo da página:  <ul>
 <li>beforeunload: podemos verificar se o usuário salvou as alterações e perguntar se realmente deseja sair.  </li>
-<li>unload: o usuário quase saiu, mas ainda podemos iniciar algumas operações, como o envio de estatísticas.### 2.1. Ciclo de vida  </li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>O ciclo de vida do carregamento de uma página, consiste em 3 eventos importantes:</p>
-<ul>
-<li><strong>DOMContentLoaded</strong>: onde o navegador carrega totalmente o HTML, e a árvore DOM é constituída, porém recursos externos como imagens, estilos ainda não podem ser carregados.  </li>
-<li><strong>load</strong>: além do carregamento do HTML, os recursos externos são carregados: imagens, estilos etc.   </li>
-<li><strong>beforeunload/unload</strong>: o usuário está saindo da página:  <ul>
-<li>beforeunload: podemos verificar se o usuário salvou as alterações e perguntar se realmente deseja sair.  </li>
-<li>unload: o usuário quase saiu, mas ainda podemos iniciar algumas operações, como o envio de estatísticas.</li>
+<li>unload: o usuário quase saiu, mas ainda podemos iniciar algumas operações, como o envio de estatísticas.  </li>
 </ul>
 </li>
 </ul>
