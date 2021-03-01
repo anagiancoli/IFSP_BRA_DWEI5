@@ -13186,8 +13186,12 @@ div#notebook {
         <span class="s1">'password'</span><span class="p">:</span> <span class="p">{</span><span class="s1">'type'</span><span class="p">:</span> <span class="s1">'password'</span> <span class="p">}</span>
     <span class="p">}</span>
 
+    <span class="c1"># Método executado todas as vezes que há uma alteração: criar ou editar novo usuário.</span>
     <span class="k">def</span> <span class="nf">on_model_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">form</span><span class="p">,</span> <span class="n">User</span><span class="p">,</span> <span class="n">is_created</span><span class="p">):</span> 
         <span class="k">if</span> <span class="s1">'password'</span> <span class="ow">in</span> <span class="n">form</span><span class="p">:</span>
+            <span class="c1"># o atributo form contém todos os valores que foram inseridos no formulário da view atual</span>
+            <span class="c1"># ou seja, se existe um campo chamado name, podemos recuperar o valor adicionado nela através de</span>
+            <span class="c1"># form.name.data</span>
             <span class="k">if</span> <span class="n">form</span><span class="o">.</span><span class="n">password</span><span class="o">.</span><span class="n">data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span> 
                 <span class="n">User</span><span class="o">.</span><span class="n">set_password</span><span class="p">(</span><span class="n">form</span><span class="o">.</span><span class="n">password</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
@@ -13258,7 +13262,6 @@ div#notebook {
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="1.3.-Modificando-o-arquivo-Views.py-da-pasta-admin">1.3. Modificando o arquivo Views.py da pasta admin<a class="anchor-link" href="#1.3.-Modificando-o-arquivo-Views.py-da-pasta-admin">¶</a></h3><ul>
-<li>Abra o arquivo Views.py, localizado dentro da pasta admin.</li>
 <li>Aplicando modificações na view do Usuário.</li>
 </ul>
 <div class="highlight"><pre><span></span><span class="c1"># Componente dentro do flask_admin para ativar as views em nossa aplicação, baseadas em nossas models.</span>
@@ -13296,8 +13299,12 @@ div#notebook {
 
 <span class="o">&lt;----</span> <span class="n">Até</span> <span class="o">------&gt;</span>
 
+    <span class="c1"># Método executado todas as vezes que há uma alteração: criar ou editar novo usuário.</span>
     <span class="k">def</span> <span class="nf">on_model_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">form</span><span class="p">,</span> <span class="n">User</span><span class="p">,</span> <span class="n">is_created</span><span class="p">):</span> 
         <span class="k">if</span> <span class="s1">'password'</span> <span class="ow">in</span> <span class="n">form</span><span class="p">:</span>
+            <span class="c1"># o atributo form contém todos os valores que foram inseridos no formulário da view atual</span>
+            <span class="c1"># ou seja, se existe um campo chamado name, podemos recuperar o valor adicionado nela através de</span>
+            <span class="c1"># form.name.data</span>
             <span class="k">if</span> <span class="n">form</span><span class="o">.</span><span class="n">password</span><span class="o">.</span><span class="n">data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span> 
                 <span class="n">User</span><span class="o">.</span><span class="n">set_password</span><span class="p">(</span><span class="n">form</span><span class="o">.</span><span class="n">password</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
@@ -13322,8 +13329,8 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="1.4.-Customizando-os-labels-da-view-UsuarioView">1.4. Customizando os labels da view UsuarioView<a class="anchor-link" href="#1.4.-Customizando-os-labels-da-view-UsuarioView">¶</a></h3><ul>
-<li>Localizae o arquivo Views.py dentro da pasta admin.</li>
+<h3 id="1.4.-Localize-o-arquivo-Views.py-dentro-da-pasta-admin">1.4. Localize o arquivo Views.py dentro da pasta admin<a class="anchor-link" href="#1.4.-Localize-o-arquivo-Views.py-dentro-da-pasta-admin">¶</a></h3><ul>
+<li>Customizando os labels da view UsuarioView.</li>
 <li>Aplicando modificações na view do Usuário.</li>
 </ul>
 <div class="highlight"><pre><span></span><span class="c1"># Código omitido para facilitar o entendimento</span>
@@ -13342,7 +13349,8 @@ div#notebook {
     <span class="p">}</span>
 
 
-    <span class="n">column_exclude_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'password'</span><span class="p">,</span> <span class="s1">'recovery_code'</span><span class="p">]</span> 
+    <span class="n">column_exclude_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'password'</span><span class="p">,</span> <span class="s1">'recovery_code'</span><span class="p">]</span>
+    <span class="n">form_excluded_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'last_update'</span><span class="p">,</span> <span class="s1">'recovery_code'</span><span class="p">]</span>
 
 <span class="c1"># Código omitido para facilitar o entendimento</span>
 </pre></div>
@@ -13361,8 +13369,8 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="1.5.-Customizando-as-descrições-da-view-UsuarioView">1.5. Customizando as descrições da view UsuarioView<a class="anchor-link" href="#1.5.-Customizando-as-descri%C3%A7%C3%B5es-da-view-UsuarioView">¶</a></h3><ul>
-<li>Localize o arquivo Views.py dentro da pasta admin.</li>
+<h3 id="1.5.-Localize-o-arquivo-Views.py-dentro-da-pasta-admin">1.5. Localize o arquivo Views.py dentro da pasta admin<a class="anchor-link" href="#1.5.-Localize-o-arquivo-Views.py-dentro-da-pasta-admin">¶</a></h3><ul>
+<li>Customizando as descrições da view UsuarioView.</li>
 <li>Aplicando modificações na view do Usuário.</li>
 </ul>
 <div class="highlight"><pre><span></span><span class="c1"># Código omitido para facilitar o entendimento</span>
@@ -13393,6 +13401,7 @@ div#notebook {
 
 <span class="o">&lt;-----</span> <span class="n">Até</span> <span class="o">-----&gt;</span>
     <span class="n">column_exclude_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'password'</span><span class="p">,</span> <span class="s1">'recovery_code'</span><span class="p">]</span> 
+    <span class="n">form_excluded_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'last_update'</span><span class="p">,</span> <span class="s1">'recovery_code'</span><span class="p">]</span>
 
 <span class="c1"># Código omitido para facilitar o entendimento</span>
 </pre></div>
@@ -13411,8 +13420,8 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="1.6.-Incluindo-a-opção-de-saída-no-arquivo-Admin.py">1.6. Incluindo a opção de saída no arquivo Admin.py<a class="anchor-link" href="#1.6.-Incluindo-a-op%C3%A7%C3%A3o-de-sa%C3%ADda-no-arquivo-Admin.py">¶</a></h3><ul>
-<li>Localize o arquivo Admin.py dentro da pasta admin.</li>
+<h3 id="1.6.-Localize-o-arquivo-Admin.py-dentro-da-pasta-admin">1.6. Localize o arquivo Admin.py dentro da pasta admin<a class="anchor-link" href="#1.6.-Localize-o-arquivo-Admin.py-dentro-da-pasta-admin">¶</a></h3><ul>
+<li>Incluindo a opção de saída no arquivo Admin.py.</li>
 <li>Para personalizar o menu, adicione o método MenuLink da biblioteca flask_admin.menu.</li>
 <li>O link para o Logout, aparecerá à direita. Ainda não funciona, porque não criamos a rota.</li>
 </ul>
@@ -13436,8 +13445,8 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="1.7.-Criando-o-Home--no-arquivo-Views.py">1.7. Criando o Home  no arquivo Views.py<a class="anchor-link" href="#1.7.-Criando-o-Home--no-arquivo-Views.py">¶</a></h3><ul>
-<li>Localize o arquivo Views.py dentro da pasta admin.</li>
+<h3 id="1.7.-Localize-o-arquivo-Views.py-dentro-da-pasta-admin">1.7. Localize o arquivo Views.py dentro da pasta admin<a class="anchor-link" href="#1.7.-Localize-o-arquivo-Views.py-dentro-da-pasta-admin">¶</a></h3><ul>
+<li>Criando o Home no arquivo Views.py.</li>
 </ul>
 <div class="highlight"><pre><span></span><span class="c1"># Componente dentro do flask_admin para ativar as views em nossa aplicação, baseadas em nossas models.</span>
 <span class="c1"># Será utilizado aqui como superclasse da classe UsuarioView (herdará todas as configurações e poderá ser modificada)</span>
@@ -13448,7 +13457,7 @@ div#notebook {
 <span class="c1"># classe HomeView tenha todas as características da página de home </span>
 <span class="c1"># Importando o decorator @expose('/home')para indicar qual rota está sendo modificada.</span>
 <span class="c1"># http://localhost:8000/admin/.</span>
-<span class="kn">from</span> <span class="nn">flask_admin</span> <span class="kn">import</span> <span class="n">AdminIndexView</span><span class="p">,</span> <span class="n">expose</span>                       <span class="o">&lt;------</span> <span class="n">Adicione</span>
+<span class="kn">from</span> <span class="nn">flask_admin</span> <span class="kn">import</span> <span class="n">AdminIndexView</span><span class="p">,</span> <span class="n">expose</span>                     <span class="o">&lt;------</span> <span class="n">Adicione</span>
 
 <span class="c1"># É importado do arquivo config.py, as variáveis app_config, app_active que app_config: possui as configurações e o tipo de ambiente a ser utilizado (Desenvolvimento, Teste ou Producao). E app_active: possui as configurações de qual ambiente está sendo utilizado por meio da variável de ambiente FLASK_ENV.</span>
 <span class="kn">from</span> <span class="nn">config</span> <span class="kn">import</span> <span class="n">app_config</span><span class="p">,</span> <span class="n">app_active</span>
@@ -13478,8 +13487,8 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="1.8.-Modificando-o-arquivo-Admin.py">1.8. Modificando o arquivo Admin.py<a class="anchor-link" href="#1.8.-Modificando-o-arquivo-Admin.py">¶</a></h3><ul>
-<li>Localize o arquivo Views.py dentro da pasta admin.</li>
+<h3 id="1.8.-Localize-o-arquivo-Views.py-dentro-da-pasta-admin">1.8. Localize o arquivo Views.py dentro da pasta admin<a class="anchor-link" href="#1.8.-Localize-o-arquivo-Views.py-dentro-da-pasta-admin">¶</a></h3><ul>
+<li>Modificando o arquivo Admin.py.</li>
 <li>Modificando a view do Admin para visualizar a view do Home customizada.</li>
 </ul>
 <div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
@@ -13520,8 +13529,8 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="1.9.-Criando-o-template-da-Home">1.9. Criando o template da Home<a class="anchor-link" href="#1.9.-Criando-o-template-da-Home">¶</a></h3><ul>
-<li>Localize o arquivo admin.html dentro da pasta templates.</li>
+<h3 id="1.9.-Localize-o-arquivo-admin.html-dentro-da-pasta-templates">1.9. Localize o arquivo admin.html dentro da pasta templates<a class="anchor-link" href="#1.9.-Localize-o-arquivo-admin.html-dentro-da-pasta-templates">¶</a></h3><ul>
+<li>Criando o template da Home.</li>
 <li>Copie o código.</li>
 <li><strong>data.username</strong>: passado no return da HomeView(), self.render('admin.html', data={ 'username': 'Ana Giancoli'})</li>
 </ul>
@@ -13546,8 +13555,8 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="1.10.-Definindo-um-tema-padrão">1.10. Definindo um tema padrão<a class="anchor-link" href="#1.10.-Definindo-um-tema-padr%C3%A3o">¶</a></h3><ul>
-<li>Localize o arquivo app.py dentro da pasta projeto.</li>
+<h3 id="1.10.-Localize-o-arquivo-app.py-dentro-da-pasta-projeto">1.10. Localize o arquivo app.py dentro da pasta projeto<a class="anchor-link" href="#1.10.-Localize-o-arquivo-app.py-dentro-da-pasta-projeto">¶</a></h3><ul>
+<li>Definindo um tema padrão.</li>
 <li>Para saber sobre outros temas padrões, consulte <a href="https://bootswatch.com/">Bootswatch</a>.</li>
 </ul>
 <div class="highlight"><pre><span></span><span class="c1"># Inclua</span>
