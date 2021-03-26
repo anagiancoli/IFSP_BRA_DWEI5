@@ -14715,6 +14715,21 @@ a.anchor-link {
 </pre></div>
 <h4 id="2.-__name__-:-indica-o-pacote-onde-a-aplicação-está:">2. __name__ : indica o pacote onde a aplicação está:<a class="anchor-link" href="#2.-__name__-:-indica-o-pacote-onde-a-aplica%C3%A7%C3%A3o-est%C3%A1:">¶</a></h4><div class="highlight"><pre><span></span><span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 </pre></div>
+<ul>
+<li>Por que __name__ ? Consulte <a href="https://blog.miguelgrinberg.com/post/why-do-we-pass-name-to-the-flask-class">Grinberg, Miguel</a>.</li>
+<li>Traduzido: "Python define a variável <strong>__name__</strong> como o <strong>nome do módulo</strong>, então o valor desta variável irá <strong>variar dependendo do arquivo fonte Python</strong> no qual você a usa.</li>
+<li>Por exemplo:<ul>
+<li>Em um <strong>módulo</strong> denominado <strong>test.py</strong> localizado no diretório de nível superior ao do aplicativo, o valor de <strong>__name__</strong> é <strong>test</strong>.</li>
+<li>Se o <strong>módulo test.py</strong> estiver localizado <strong>dentro de um pacote Python</strong> chamado <strong>my_package</strong>, então o valor de <strong>__name__</strong> é <strong>my_package.test</strong>.</li>
+</ul>
+</li>
+<li>Existem <em>duas exceções especiais</em> em relação ao valor de <strong>__name__</strong>:<ul>
+<li>Dentro de um <strong>módulo construtor de pacote __ init__.py</strong>, o valor de <strong>__ name__</strong> é o <strong>nome do pacote</strong>, sem __ init__. </li>
+<li>Por exemplo, em mypackage / __ init __ .py, o valor de __ name __ é apenas <strong>mypackage</strong>.</li>
+<li>No módulo principal do aplicativo -- <strong>o arquivo no qual você executa o interpretador Python</strong>, o valor de <strong>__ name__</strong> tem o valor especial de <strong>__ main__</strong>."</li>
+</ul>
+</li>
+</ul>
 <h4 id="3.-Criando-a-primeira-rota,-no-caso,-a-raiz-da-aplicação.-Quando-criamos-rotas-seguidas-uma-da-outra,-elas-acessam-a-mesma-requisicao-HTTP:">3. Criando a primeira rota, no caso, a raiz da aplicação. Quando criamos rotas seguidas uma da outra, elas acessam a mesma requisicao HTTP:<a class="anchor-link" href="#3.-Criando-a-primeira-rota,-no-caso,-a-raiz-da-aplica%C3%A7%C3%A3o.-Quando-criamos-rotas-seguidas-uma-da-outra,-elas-acessam-a-mesma-requisicao-HTTP:">¶</a></h4><div class="highlight"><pre><span></span><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">"/"</span><span class="p">)</span>  
 <span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">"/index"</span><span class="p">)</span>
 </pre></div>
